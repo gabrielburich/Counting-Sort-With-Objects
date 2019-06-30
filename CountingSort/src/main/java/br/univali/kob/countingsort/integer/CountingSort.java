@@ -1,5 +1,7 @@
 package br.univali.kob.countingsort.integer;
 
+import org.apache.log4j.Logger;
+
 import java.util.Arrays;
 
 /**
@@ -9,6 +11,7 @@ public class CountingSort {
 
     private int[] arrayToSort;
     private int[] auxCountArray;
+    static Logger logger = Logger.getLogger(CountingSort.class);
 
     /**
      * Method to order an int array
@@ -16,13 +19,16 @@ public class CountingSort {
      * @return int sort array
      */
     public int[] sort(int[] arrayToSort) {
+        logger.debug("Array to Sort" + Arrays.toString(arrayToSort));
 
         initValues(arrayToSort);
 
         int[] sortArray = new int[this.arrayToSort.length];
 
         this.auxCountArray = countElementsOccurrence(this.arrayToSort, this.auxCountArray);
+        logger.debug("Aux Array before countElementsOccurrence " + Arrays.toString(this.auxCountArray));
         this.auxCountArray = sumWithPrevious(this.auxCountArray);
+        logger.debug("Aux Array before sumWithPrevious " + Arrays.toString(this.auxCountArray));
 
         for (int indexArrayToSort = 0; indexArrayToSort < this.arrayToSort.length; indexArrayToSort++) {
             int value = this.arrayToSort[indexArrayToSort];
@@ -30,7 +36,9 @@ public class CountingSort {
             this.auxCountArray[value]--;
             sortArray[sortArrayIndex - 1] = value;
         }
-        System.out.println("AuxArray" + Arrays.toString(this.auxCountArray));
+
+        logger.debug("Aux Array before order " + Arrays.toString(this.auxCountArray));
+        logger.debug("Sort Array" + Arrays.toString(sortArray));
 
         return sortArray;
     }
