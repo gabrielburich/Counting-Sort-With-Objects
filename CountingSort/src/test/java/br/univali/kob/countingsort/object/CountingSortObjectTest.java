@@ -11,13 +11,13 @@ import java.util.Objects;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CountingSortObjectTest {
 
-    private CountingSortObject<People> countingSortObject;
+    private CountingSortObject countingSortObject;
     private People[] arrayToSort;
     private People[] returnArray;
 
     @BeforeAll
     public void initValues() {
-        this.countingSortObject = new CountingSortObject<People>();
+        this.countingSortObject = new CountingSortObject();
         this.arrayToSort = new People[4];
         this.returnArray = new People[4];
 
