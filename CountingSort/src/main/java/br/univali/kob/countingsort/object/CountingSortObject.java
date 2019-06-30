@@ -1,5 +1,9 @@
 package br.univali.kob.countingsort.object;
 
+import org.apache.log4j.Logger;
+
+import java.util.Arrays;
+
 /**
  * Class to order a object array
  */
@@ -8,6 +12,7 @@ public class CountingSortObject {
     private Object[] arrayToSort;
     private ArrayElement[] arrayElements;
     private int[] auxCountArray;
+    static Logger logger = Logger.getLogger(CountingSortObject.class);
 
     /**
      * Method to sort an array
@@ -15,10 +20,14 @@ public class CountingSortObject {
      * @return order array
      */
     public Object[] sort(CountingSortAble[] arrayToSort) {
+        logger.debug("Array to Sort" + Arrays.toString(arrayToSort));
+
         initValues(arrayToSort);
 
         this.auxCountArray = countElementsOccurrence(this.arrayElements, this.auxCountArray);
+        logger.debug("Aux Array before countElementsOccurrence " + Arrays.toString(this.auxCountArray));
         this.auxCountArray = sumWithPrevious(this.auxCountArray);
+        logger.debug("Aux Array before sumWithPrevious " + Arrays.toString(this.auxCountArray));
 
         Object[] sortArray = new Object[this.arrayToSort.length];
 
@@ -28,6 +37,9 @@ public class CountingSortObject {
             this.auxCountArray[element.getKey()]--;
             sortArray[sortArrayIndex - 1] = element.getElement();
         }
+
+        logger.debug("Aux Array before order " + Arrays.toString(this.auxCountArray));
+        logger.debug("Sort Array" + Arrays.toString(sortArray));
 
         return sortArray;
     }
