@@ -1,13 +1,20 @@
-package br.univali.kob.countingsort;
+package br.univali.kob.countingsort.integer;
 
 import java.util.Arrays;
 
+/**
+ * Class to order an int array
+ */
 public class CountingSort {
 
     private int[] arrayToSort;
     private int[] auxCountArray;
 
-
+    /**
+     * Method to order an int array
+     * @param arrayToSort int array
+     * @return int sort array
+     */
     public int[] sort(int[] arrayToSort) {
 
         initValues(arrayToSort);
@@ -33,7 +40,7 @@ public class CountingSort {
         this.auxCountArray = new int[max(arrayToSort) + 1];
     }
 
-    private Integer max(int[] array) {
+    private int max(int[] array) {
         int max = array[0];
 
         for (int index = 1; index < array.length; index++ ) {
