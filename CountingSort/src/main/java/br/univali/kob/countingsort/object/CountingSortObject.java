@@ -36,7 +36,7 @@ public class CountingSortObject<T> {
     private void initValues(CountingSortAble[] arrayToSort) {
         this.arrayToSort = (T[]) arrayToSort;
         this.arrayElements = mountArrayElements(arrayToSort);
-        this.auxCountArray = new int[max(this.arrayElements)];
+        this.auxCountArray = new int[max(this.arrayElements) + 1];
     }
 
     private ArrayElement[] mountArrayElements(CountingSortAble[] arrayToSort) {
