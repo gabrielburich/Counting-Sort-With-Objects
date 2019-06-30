@@ -7,12 +7,11 @@ public class CountingSort {
     private int[] arrayToSort;
     private int[] auxCountArray;
 
-    public CountingSort(int[] arrayToSort) {
-        this.arrayToSort = arrayToSort;
-        this.auxCountArray = new int[max(arrayToSort) + 1];
-    }
 
-    public int[] sort() {
+    public int[] sort(int[] arrayToSort) {
+
+        initValues(arrayToSort);
+
         int[] sortArray = new int[this.arrayToSort.length];
 
         this.auxCountArray = countElementsOccurrence(this.arrayToSort, this.auxCountArray);
@@ -27,6 +26,11 @@ public class CountingSort {
         System.out.println("AuxArray" + Arrays.toString(this.auxCountArray));
 
         return sortArray;
+    }
+
+    private void initValues (int[] arrayToSort) {
+        this.arrayToSort = arrayToSort;
+        this.auxCountArray = new int[max(arrayToSort) + 1];
     }
 
     private Integer max(int[] array) {
