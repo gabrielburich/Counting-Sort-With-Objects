@@ -2,12 +2,11 @@ package br.univali.kob.countingsort.object;
 
 /**
  * Class to order a object array
- * @param <T> Type
  */
-public class CountingSortObject<T> {
+public class CountingSortObject {
 
-    private T[] arrayToSort;
-    private ArrayElement<T>[] arrayElements;
+    private Object[] arrayToSort;
+    private ArrayElement[] arrayElements;
     private int[] auxCountArray;
 
     /**
@@ -15,26 +14,26 @@ public class CountingSortObject<T> {
      * @param arrayToSort array to be order
      * @return order array
      */
-    public T[] sort(CountingSortAble[] arrayToSort) {
+    public Object[] sort(CountingSortAble[] arrayToSort) {
         initValues(arrayToSort);
 
         this.auxCountArray = countElementsOccurrence(this.arrayElements, this.auxCountArray);
         this.auxCountArray = sumWithPrevious(this.auxCountArray);
 
-        Object[] sortArray =  new Object[this.arrayToSort.length];
+        Object[] sortArray = new Object[this.arrayToSort.length];
 
         for (int indexArrayToSort = 0; indexArrayToSort < this.arrayToSort.length; indexArrayToSort++) {
-            ArrayElement<T> element = this.arrayElements[indexArrayToSort];
+            ArrayElement element = this.arrayElements[indexArrayToSort];
             int sortArrayIndex = this.auxCountArray[element.getKey()];
             this.auxCountArray[element.getKey()]--;
             sortArray[sortArrayIndex - 1] = element.getElement();
         }
 
-        return (T[]) sortArray;
+        return sortArray;
     }
 
     private void initValues(CountingSortAble[] arrayToSort) {
-        this.arrayToSort = (T[]) arrayToSort;
+        this.arrayToSort =  arrayToSort;
         this.arrayElements = mountArrayElements(arrayToSort);
         this.auxCountArray = new int[max(this.arrayElements) + 1];
     }
@@ -43,9 +42,9 @@ public class CountingSortObject<T> {
         ArrayElement[] elements = new ArrayElement[arrayToSort.length];
 
         for (int i = 0; i < arrayToSort.length; i++) {
-            T element = (T) arrayToSort[i];
+            Object element = arrayToSort[i];
             int key = arrayToSort[i].sortValue();
-            elements[i] = new ArrayElement<>(element, key);
+            elements[i] = new ArrayElement(element, key);
         }
 
         return elements;
@@ -80,10 +79,9 @@ public class CountingSortObject<T> {
 
     /**
      * An Array element with key to sort
-     * @param <T> element type
      */
-    private class ArrayElement<T>{
-        private final T element;
+    private class ArrayElement{
+        private final Object element;
         private final int key;
 
         /**
@@ -91,7 +89,7 @@ public class CountingSortObject<T> {
          * @param element array element
          * @param key key to using by sort
          */
-        public ArrayElement(T element, int key) {
+        public ArrayElement(Object element, int key) {
             this.element = element;
             this.key = key;
         }
@@ -100,7 +98,7 @@ public class CountingSortObject<T> {
          * Get element
          * @return array element
          */
-        public T getElement() {
+        public Object getElement() {
             return element;
         }
 
