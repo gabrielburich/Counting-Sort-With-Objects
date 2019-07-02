@@ -67,7 +67,7 @@ public class CountingSort {
         return auxCount;
     }
 
-    private int[] sumWithPrevious(int[] auxCount) {
+    protected int[] sumWithPrevious(int[] auxCount) {
         for (int i = 1; i < auxCount.length; i++) {
             auxCount[i] = auxCount[i] + auxCount[i - 1];
         }
