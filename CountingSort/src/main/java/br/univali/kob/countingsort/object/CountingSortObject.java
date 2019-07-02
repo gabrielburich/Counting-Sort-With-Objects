@@ -25,9 +25,9 @@ public class CountingSortObject {
         initValues(arrayToSort);
 
         this.auxCountArray = countElementsOccurrence(this.arrayElements, this.auxCountArray);
-        logger.debug("Aux Array before countElementsOccurrence " + Arrays.toString(this.auxCountArray));
+        logger.debug("Aux Array after countElementsOccurrence " + Arrays.toString(this.auxCountArray));
         this.auxCountArray = sumWithPrevious(this.auxCountArray);
-        logger.debug("Aux Array before sumWithPrevious " + Arrays.toString(this.auxCountArray));
+        logger.debug("Aux Array after sumWithPrevious " + Arrays.toString(this.auxCountArray));
 
         Object[] sortArray = new Object[this.arrayToSort.length];
 
@@ -38,7 +38,7 @@ public class CountingSortObject {
             sortArray[sortArrayIndex - 1] = element.getElement();
         }
 
-        logger.debug("Aux Array before order " + Arrays.toString(this.auxCountArray));
+        logger.debug("Aux Array after order " + Arrays.toString(this.auxCountArray));
         logger.debug("Sort Array" + Arrays.toString(sortArray));
 
         return sortArray;
