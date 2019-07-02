@@ -23,12 +23,12 @@ public class CountingSort {
 
         initValues(arrayToSort);
 
-        int[] sortArray = new int[this.arrayToSort.length];
-
         this.auxCountArray = countElementsOccurrence(this.arrayToSort, this.auxCountArray);
         logger.debug("Aux Array after countElementsOccurrence " + Arrays.toString(this.auxCountArray));
         this.auxCountArray = sumWithPrevious(this.auxCountArray);
         logger.debug("Aux Array after sumWithPrevious " + Arrays.toString(this.auxCountArray));
+
+        int[] sortArray = new int[this.arrayToSort.length];
 
         for (int indexArrayToSort = 0; indexArrayToSort < this.arrayToSort.length; indexArrayToSort++) {
             int value = this.arrayToSort[indexArrayToSort];
